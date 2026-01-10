@@ -4,6 +4,7 @@ import { HeroSection } from "@/components/hero-section"
 import { FeatureCards } from "@/components/feature-cards"
 import { AboutSection } from "@/components/about-section"
 import { ServicesSection } from "@/components/services-section"
+import { InteractiveServices } from "@/components/interactive-services"
 import { CountriesSection } from "@/components/countries-section"
 import { WhyTrustSection } from "@/components/why-trust-section"
 import { ProcessSection } from "@/components/process-section"
@@ -22,7 +23,7 @@ export default function HomePage() {
       <HeroSection />
       <FeatureCards />
       <AboutSection />
-      <ServicesSection />
+      <InteractiveServices />
       <CountriesSection />
       <WhyTrustSection />
       <ProcessSection />
