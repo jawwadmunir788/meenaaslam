@@ -10,7 +10,8 @@ const countries = [
   {
     id: "usa",
     name: "United States",
-    flag: "🇺🇸",
+    flag: "/usa-flag.png",
+    isImage: true,
     description:
       "Shipping from China to USA is smooth with our reliable cargo services. We cater to businesses and individuals, ensuring fast air and sea freight options. Our expertise in USA customs regulations prevents delays, while secure warehousing and efficient distribution keep your shipments on schedule.",
     features: [
@@ -23,9 +24,58 @@ const countries = [
     ],
   },
   {
+    id: "canada",
+    name: "Canada",
+    flag: "/canada-flag.png",
+    isImage: true,
+    description:
+      "We provide reliable cargo solutions for shipments to Canada. Whether it's individual parcels or large commercial freight, our logistics network ensures your goods reach their destination in Canada safely and efficiently.",
+    features: [
+      "Door-to-door delivery across Canada",
+      "Efficient customs brokerage and handling",
+      "Competitive air and sea freight rates",
+      "Secure handling of commercial and personal cargo",
+      "Reliable transit times for all provinces",
+      "Comprehensive tracking for full visibility",
+    ],
+  },
+  {
+    id: "uk",
+    name: "United Kingdom",
+    flag: "/uk-flag.png",
+    isImage: true,
+    description:
+      "Meena Aslam provides efficient and secure cargo services to businesses and individuals across the UK. Whether you need air and sea freight, we ensure reliable shipping from China to London, Manchester, Birmingham and beyond.",
+    features: [
+      "Fast shipping to major UK cities and surrounding areas",
+      "Affordable and transparent pricing with no hidden fees",
+      "Expert handling of commercial, retail, and personal shipments",
+      "Comprehensive customs clearance for hassle-free imports",
+      "Secure warehousing and inventory management services",
+      "Real-time shipment tracking with dedicated customer support",
+    ],
+  },
+  {
+    id: "australia",
+    name: "Australia",
+    flag: "/australia-flag.png",
+    isImage: true,
+    description:
+      "Shipping to Australia is made easy with our specialized cargo services. We understand the unique requirements of the Australian market and provide tailored logistics solutions to ensure your goods arrive on time.",
+    features: [
+      "Fast air and sea freight to Oceania",
+      "Compliance with Australian customs and biosecurity",
+      "Secure handling and packaging of goods",
+      "End-to-end logistics from source to destination",
+      "Competitive pricing for container and small shipments",
+      "Professional support for import documentation",
+    ],
+  },
+  {
     id: "europe",
     name: "Europe",
-    flag: "🇪🇺",
+    flag: "/europe-flag.png",
+    isImage: true,
     description:
       "We offer efficient cargo services across Europe, catering to businesses and consumers looking for reliable logistics from China. Our team ensures smooth transportation via air and sea, meeting the diverse needs of European markets.",
     features: [
@@ -38,9 +88,26 @@ const countries = [
     ],
   },
   {
+    id: "gcc",
+    name: "GCC",
+    flag: "/gcc-logo.png",
+    isImage: true,
+    description:
+      "Our cargo services to the GCC region (UAE, Saudi Arabia, Qatar, Oman, Kuwait, Bahrain) are designed for businesses and individuals requiring fast, secure and cost effective shipping. We handle commercial stock, retail goods and personal shipments with precision across the Gulf.",
+    features: [
+      "Fast air and sea freight to all GCC countries",
+      "Tailored solutions for retail and e-commerce",
+      "Comprehensive customs clearance assistance",
+      "Warehousing and distribution for bulk shipments",
+      "Secure transport for high-value goods",
+      "24/7 customer support for seamless logistics",
+    ],
+  },
+  {
     id: "pakistan",
     name: "Pakistan",
-    flag: "🇵🇰",
+    flag: "/pakistan-flag.png",
+    isImage: true,
     description:
       "Our cargo services in Pakistan are designed to provide affordable, secure and prompt deliveries. We specialize in transporting goods from China to all major cities, ensuring compliance with local import regulations.",
     features: [
@@ -50,36 +117,6 @@ const countries = [
       "Reliable door to door service across Pakistan",
       "Assistance with bulk and small-scale imports",
       "Real time shipment tracking for customer convenience",
-    ],
-  },
-  {
-    id: "uae",
-    name: "UAE",
-    flag: "🇦🇪",
-    description:
-      "Our cargo services from China to the UAE are designed for businesses and individuals requiring fast, secure and cost effective shipping. We handle commercial stock, retail goods and personal shipments with precision.",
-    features: [
-      "Fast air and sea freight to the UAE",
-      "Tailored solutions for retail and e-commerce",
-      "Comprehensive customs clearance assistance",
-      "Warehousing and distribution for bulk shipments",
-      "Secure transport for high-value goods",
-      "24/7 customer support for seamless logistics",
-    ],
-  },
-  {
-    id: "uk",
-    name: "United Kingdom",
-    flag: "🇬🇧",
-    description:
-      "Meena Aslam provides efficient and secure cargo services to businesses and individuals across the UK. Whether you need air and sea freight, we ensure reliable shipping from China to London, Manchester, Birmingham and beyond.",
-    features: [
-      "Fast shipping to major UK cities and surrounding areas",
-      "Affordable and transparent pricing with no hidden fees",
-      "Expert handling of commercial, retail, and personal shipments",
-      "Comprehensive customs clearance for hassle-free imports",
-      "Secure warehousing and inventory management services",
-      "Real-time shipment tracking with dedicated customer support",
     ],
   },
 ]
@@ -109,14 +146,20 @@ export function CountriesSection() {
               key={country.id}
               onClick={() => setActiveCountry(country)}
               className={cn(
-                "flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all",
+                "flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all min-w-[140px] justify-center",
                 activeCountry.id === country.id
                   ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg scale-105"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200",
               )}
             >
-              <span className="text-2xl">{country.flag}</span>
-              <span>{country.name}</span>
+              <div className="flex items-center gap-2">
+                {country.isImage ? (
+                  <img src={country.flag} alt={country.name} className="w-8 h-8 rounded-full object-cover" />
+                ) : (
+                  <span className="text-2xl leading-none">{country.flag}</span>
+                )}
+                <span>{country.name}</span>
+              </div>
             </button>
           ))}
         </div>
@@ -126,7 +169,11 @@ export function CountriesSection() {
           {/* Description */}
           <div className="bg-gradient-to-br from-orange-50 to-white rounded-3xl p-8 shadow-lg">
             <div className="flex items-center gap-4 mb-6">
-              <span className="text-6xl">{activeCountry.flag}</span>
+              {activeCountry.isImage ? (
+                <img src={activeCountry.flag} alt={activeCountry.name} className="w-16 h-16 rounded-full object-cover shadow-md" />
+              ) : (
+                <span className="text-6xl">{activeCountry.flag}</span>
+              )}
               <div>
                 <h3 className="text-2xl font-bold text-gray-900">{activeCountry.name}</h3>
                 <p className="text-orange-500 font-medium">Premium Shipping Destination</p>

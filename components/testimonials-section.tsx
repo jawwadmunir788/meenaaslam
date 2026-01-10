@@ -1,7 +1,15 @@
 "use client"
 
-import { useState } from "react"
-import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react"
+import { useEffect, useState } from "react"
+import { Star, Quote } from "lucide-react"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel"
 
 const testimonials = [
   {
@@ -42,27 +50,25 @@ const testimonials = [
 ]
 
 export function TestimonialsSection() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const visibleCount = 3
+  const [api, setApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
 
-  const next = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length)
-  }
+  useEffect(() => {
+    if (!api) return
 
-  const prev = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
-  }
+    const timer = setInterval(() => {
+      api.scrollNext()
+    }, 5000)
 
-  const getVisibleTestimonials = () => {
-    const result = []
-    for (let i = 0; i < visibleCount; i++) {
-      result.push(testimonials[(currentIndex + i) % testimonials.length])
-    }
-    return result
-  }
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap())
+    })
+
+    return () => clearInterval(timer)
+  }, [api])
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -74,52 +80,54 @@ export function TestimonialsSection() {
         </div>
 
         <div className="relative max-w-6xl mx-auto">
-          {/* Navigation Buttons */}
-          <button
-            onClick={prev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-orange-50 transition-colors"
+          <Carousel
+            setApi={setApi}
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
           >
-            <ChevronLeft className="h-6 w-6 text-gray-600" />
-          </button>
-          <button
-            onClick={next}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-orange-50 transition-colors"
-          >
-            <ChevronRight className="h-6 w-6 text-gray-600" />
-          </button>
-
-          {/* Testimonials Grid */}
-          <div className="grid md:grid-cols-3 gap-6 px-8">
-            {getVisibleTestimonials().map((testimonial, index) => (
-              <div
-                key={`${testimonial.name}-${index}`}
-                className="bg-gradient-to-br from-orange-50 to-white rounded-2xl p-6 shadow-lg"
-              >
-                <Quote className="h-8 w-8 text-orange-300 mb-4" />
-                <p className="text-gray-600 mb-6 leading-relaxed">{testimonial.text}</p>
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-orange-400 text-orange-400" />
-                  ))}
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                  <p className="text-sm text-gray-500">{testimonial.role}</p>
-                  <p className="text-xs text-orange-500">{testimonial.location}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+            <CarouselContent className="-ml-4">
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                  <div className="h-full bg-gradient-to-br from-orange-50 to-white rounded-2xl p-8 shadow-lg transition-all duration-300 hover:shadow-xl border border-orange-100/50">
+                    <Quote className="h-10 w-10 text-orange-200 mb-6" />
+                    <p className="text-gray-600 mb-8 leading-relaxed italic">"{testimonial.text}"</p>
+                    <div className="flex items-center gap-1 mb-6">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-orange-400 text-orange-400" />
+                      ))}
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-bold text-lg">
+                        {testimonial.name.charAt(0)}
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-gray-900 leading-none mb-1">{testimonial.name}</h4>
+                        <p className="text-xs text-gray-500 uppercase tracking-wider">{testimonial.role}</p>
+                        <p className="text-xs text-orange-500 font-medium">{testimonial.location}</p>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="hidden md:block">
+              <CarouselPrevious className="-left-12 bg-white hover:bg-orange-50 text-orange-500 border-orange-200" />
+              <CarouselNext className="-right-12 bg-white hover:bg-orange-50 text-orange-500 border-orange-200" />
+            </div>
+          </Carousel>
 
           {/* Dots Indicator */}
-          <div className="flex justify-center gap-2 mt-8">
+          <div className="flex justify-center gap-2 mt-12">
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  index === currentIndex ? "bg-orange-500 w-6" : "bg-gray-300"
-                }`}
+                onClick={() => api?.scrollTo(index)}
+                className={`h-2 rounded-full transition-all duration-300 ${index === current ? "bg-orange-500 w-8" : "bg-gray-200 w-2 hover:bg-gray-300"
+                  }`}
+                aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>

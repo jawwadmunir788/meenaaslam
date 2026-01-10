@@ -8,6 +8,22 @@ import Link from "next/link"
 
 const services = [
   {
+    icon: Search,
+    title: "Product Outsourcing",
+    description:
+      "We find the best manufacturers and suppliers with our expert assistance. We source products at competitive prices tailored to your needs and ensure they reach you exactly as requested.",
+    href: "/our-services/sourcing-service",
+    features: ["Global Manufacturer Sourcing", "Price and Quality Negotiation", "Custom Product Procurement", "Verified Suppliers Only"],
+  },
+  {
+    icon: Package,
+    title: "Product Delivery / Cargo",
+    description:
+      "Reliable and secure product delivery from global markets right to your doorstep. We handle everything from the factory to your door with complete safety and transparency.",
+    href: "/our-services/import-service",
+    features: ["Doorstep Cargo Delivery", "End-to-End Shipment Safety", "Reliable Transit Timelines", "Consolidated Cargo Solutions"],
+  },
+  {
     icon: Download,
     title: "Import Service",
     description:
@@ -27,22 +43,6 @@ const services = [
       "We handle global shipments with precision and compliance. Seamless worldwide shipping via air or sea with cost effective and timely delivery.",
     href: "/our-services/export-service",
     features: ["Global Shipping Coverage", "Customs Documentation", "Competitive Rates", "Secure Packaging"],
-  },
-  {
-    icon: Package,
-    title: "Procurement Services",
-    description:
-      "Complete procurement management for cost effective and efficient sourcing. We handle purchase, payments & logistics ensuring smooth imports.",
-    href: "/our-services/procurement-services",
-    features: ["Supplier Verification", "Payment Management", "Quality Control", "Cost Optimization"],
-  },
-  {
-    icon: Search,
-    title: "Sourcing Service",
-    description:
-      "Find the best manufacturers and suppliers with our expert assistance. We source products at competitive prices tailored to your needs.",
-    href: "/our-services/sourcing-service",
-    features: ["Market Research", "Supplier Matching", "Price Negotiation", "Sample Coordination"],
   },
   {
     icon: ClipboardCheck,

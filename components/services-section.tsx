@@ -5,28 +5,28 @@ import Link from "next/link"
 
 const services = [
   {
+    icon: Search,
+    title: "Product Outsourcing",
+    description: "We find the best products at competitive prices, tailored to your needs and requirements from global markets.",
+    href: "/our-services/sourcing-service",
+  },
+  {
     icon: Package,
-    title: "Procurement",
-    description: "We handle purchase, payments & logistics ensuring smooth and secure imports for you.",
-    href: "/our-services/procurement-services",
+    title: "Product Delivery / Cargo",
+    description: "Reliable cargo services ensuring safe and timely delivery of your products right to your doorstep.",
+    href: "/our-services/import-service",
   },
   {
     icon: Download,
-    title: "Import",
-    description: "We take care of all your import needs. From Logistics to Packaging & Invoicing.",
+    title: "Import Service",
+    description: "Comprehensive solutions for all your import needs, from documentation to logistics and clearing.",
     href: "/our-services/import-service",
   },
   {
     icon: Upload,
-    title: "Export",
-    description: "Seamless worldwide shipping via air or sea with cost effective and timely delivery.",
+    title: "Export Service",
+    description: "Seamless worldwide shipping via air or sea with cost effective and timely delivery solutions.",
     href: "/our-services/export-service",
-  },
-  {
-    icon: Search,
-    title: "Sourcing",
-    description: "We find the best products at competitive prices, tailored to your needs and requirements.",
-    href: "/our-services/sourcing-service",
   },
   {
     icon: ClipboardCheck,
