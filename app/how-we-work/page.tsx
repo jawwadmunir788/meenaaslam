@@ -36,7 +36,7 @@ const expertise = [
 
 export default function HowWeWorkPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white dark:bg-slate-900">
       <Header />
       <PageHero
         title="How We Work"
@@ -44,51 +44,52 @@ export default function HowWeWorkPage() {
         breadcrumb="How We Work"
       />
 
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-900">
         <div className="container mx-auto px-4">
           {/* From Inspection to Delivery */}
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
                 From Inspection to <span className="gradient-text">Delivery</span>
               </h2>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                 A complete end-to-end solution ensuring your stock is inspected, verified and shipped securely from
                 China to your desired destination.
               </p>
-              <p className="text-gray-600 mb-8 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
                 Sourcing from China can be challenging, but with our all-in-one solution, you don't have to worry about
                 a thing. From supplier verification and quality control to secure shipping and logistics, we handle
                 everything for you.
               </p>
 
               <div className="grid sm:grid-cols-3 gap-4">
-                <div className="p-4 bg-orange-50 rounded-xl text-center">
-                  <div className="text-lg font-bold text-orange-500">Quality Check</div>
-                  <div className="text-xs text-gray-600">Before shipment</div>
+                <div className="p-4 bg-orange-50 dark:bg-orange-500/10 rounded-xl text-center border border-transparent dark:border-orange-500/20">
+                  <div className="text-lg font-bold text-orange-500 dark:text-orange-400">Quality Check</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">Before shipment</div>
                 </div>
-                <div className="p-4 bg-orange-50 rounded-xl text-center">
-                  <div className="text-lg font-bold text-orange-500">Seamless</div>
-                  <div className="text-xs text-gray-600">Logistics</div>
+                <div className="p-4 bg-orange-50 dark:bg-orange-500/10 rounded-xl text-center border border-transparent dark:border-orange-500/20">
+                  <div className="text-lg font-bold text-orange-500 dark:text-orange-400">Seamless</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">Logistics</div>
                 </div>
-                <div className="p-4 bg-orange-50 rounded-xl text-center">
-                  <div className="text-lg font-bold text-orange-500">Risk Free</div>
-                  <div className="text-xs text-gray-600">Sourcing</div>
+                <div className="p-4 bg-orange-50 dark:bg-orange-500/10 rounded-xl text-center border border-transparent dark:border-orange-500/20">
+                  <div className="text-lg font-bold text-orange-500 dark:text-orange-400">Risk Free</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">Sourcing</div>
                 </div>
               </div>
             </div>
 
-            <div>
-              <img src="/warehouse-worker-checking-inventory-clipboard-carg.jpg" alt="Inspection Process" className="rounded-3xl shadow-xl" />
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+              <img src="/warehouse-worker-checking-inventory-clipboard-carg.jpg" alt="Inspection Process" className="relative rounded-3xl shadow-xl w-full" />
             </div>
           </div>
 
           {/* Our Expertise */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Our <span className="gradient-text">Expertise</span>
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               We offer six key services ensuring reliable, professional, efficient and secure sourcing, inspection and
               logistics solutions for your business.
             </p>
@@ -98,25 +99,25 @@ export default function HowWeWorkPage() {
             {expertise.map((item) => (
               <div
                 key={item.title}
-                className="p-6 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow"
+                className="p-6 bg-gradient-to-br from-gray-50 to-white dark:from-slate-800 dark:to-slate-900 rounded-2xl border border-gray-100 dark:border-slate-700 hover:shadow-lg dark:hover:shadow-slate-900/50 transition-all hover:-translate-y-1"
               >
-                <div className="p-3 bg-orange-100 rounded-xl w-fit mb-4">
-                  <item.icon className="h-6 w-6 text-orange-500" />
+                <div className="p-3 bg-orange-100 dark:bg-orange-600/40 rounded-xl w-fit mb-4 border border-orange-200/50 dark:border-orange-500/40">
+                  <item.icon className="h-6 w-6 text-orange-600 dark:text-orange-200" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-gray-600 text-sm">{item.description}</p>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{item.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">{item.description}</p>
               </div>
             ))}
           </div>
 
           {/* CTA */}
-          <div className="text-center bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl p-12 text-white">
+          <div className="text-center bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl p-12 text-white shadow-xl shadow-orange-500/20">
             <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
             <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
               Contact us today and let us handle your logistics with precision and care.
             </p>
             <Link href="/request-a-quote">
-              <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100">
+              <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100 shadow-lg">
                 Get A Quote
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>

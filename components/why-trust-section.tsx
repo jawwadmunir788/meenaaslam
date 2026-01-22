@@ -49,8 +49,8 @@ export function WhyTrustSection() {
             <div className="grid sm:grid-cols-2 gap-6 mb-8">
               {features.map((feature) => (
                 <div key={feature.title} className="flex items-start gap-3">
-                  <div className="p-2 bg-orange-500/20 rounded-lg">
-                    <feature.icon className="h-5 w-5 text-orange-400" />
+                  <div className="p-2 bg-orange-600/40 rounded-lg border border-orange-500/50">
+                    <feature.icon className="h-5 w-5 text-orange-200" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-white">{feature.title}</h4>

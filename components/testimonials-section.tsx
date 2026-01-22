@@ -68,13 +68,13 @@ export function TestimonialsSection() {
   }, [api])
 
   return (
-    <section className="py-20 bg-white overflow-hidden">
+    <section className="py-20 bg-white dark:bg-slate-900 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             What Our <span className="gradient-text">Clients Say</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Don't just take our word for it. Here's what our satisfied customers have to say about our services.
           </p>
         </div>
@@ -91,22 +91,22 @@ export function TestimonialsSection() {
             <CarouselContent className="-ml-4">
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div className="h-full bg-gradient-to-br from-orange-50 to-white rounded-2xl p-8 shadow-lg transition-all duration-300 hover:shadow-xl border border-orange-100/50">
-                    <Quote className="h-10 w-10 text-orange-200 mb-6" />
-                    <p className="text-gray-600 mb-8 leading-relaxed italic">"{testimonial.text}"</p>
+                  <div className="h-full bg-gradient-to-br from-orange-50 to-white dark:from-slate-800 dark:to-slate-900 rounded-2xl p-8 shadow-lg dark:shadow-slate-900/50 transition-all duration-300 hover:shadow-xl border border-orange-100/50 dark:border-slate-700">
+                    <Quote className="h-10 w-10 text-orange-200 dark:text-orange-500/30 mb-6" />
+                    <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed italic">"{testimonial.text}"</p>
                     <div className="flex items-center gap-1 mb-6">
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <Star key={i} className="h-4 w-4 fill-orange-400 text-orange-400" />
                       ))}
                     </div>
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-bold text-lg">
+                      <div className="w-12 h-12 bg-orange-100 dark:bg-orange-600/40 rounded-full flex items-center justify-center text-orange-600 dark:text-orange-200 font-bold text-lg border border-orange-200/50 dark:border-orange-500/40">
                         {testimonial.name.charAt(0)}
                       </div>
                       <div>
-                        <h4 className="font-bold text-gray-900 leading-none mb-1">{testimonial.name}</h4>
-                        <p className="text-xs text-gray-500 uppercase tracking-wider">{testimonial.role}</p>
-                        <p className="text-xs text-orange-500 font-medium">{testimonial.location}</p>
+                        <h4 className="font-bold text-gray-900 dark:text-white leading-none mb-1">{testimonial.name}</h4>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">{testimonial.role}</p>
+                        <p className="text-xs text-orange-500 dark:text-orange-400 font-medium">{testimonial.location}</p>
                       </div>
                     </div>
                   </div>
@@ -114,8 +114,8 @@ export function TestimonialsSection() {
               ))}
             </CarouselContent>
             <div className="hidden md:block">
-              <CarouselPrevious className="-left-12 bg-white hover:bg-orange-50 text-orange-500 border-orange-200" />
-              <CarouselNext className="-right-12 bg-white hover:bg-orange-50 text-orange-500 border-orange-200" />
+              <CarouselPrevious className="-left-12 bg-white dark:bg-slate-800 hover:bg-orange-50 dark:hover:bg-slate-700 text-orange-500 border-orange-200 dark:border-slate-600" />
+              <CarouselNext className="-right-12 bg-white dark:bg-slate-800 hover:bg-orange-50 dark:hover:bg-slate-700 text-orange-500 border-orange-200 dark:border-slate-600" />
             </div>
           </Carousel>
 
@@ -125,7 +125,7 @@ export function TestimonialsSection() {
               <button
                 key={index}
                 onClick={() => api?.scrollTo(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${index === current ? "bg-orange-500 w-8" : "bg-gray-200 w-2 hover:bg-gray-300"
+                className={`h-2 rounded-full transition-all duration-300 ${index === current ? "bg-orange-500 w-8" : "bg-gray-200 dark:bg-slate-700 w-2 hover:bg-gray-300 dark:hover:bg-slate-600"
                   }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
@@ -136,3 +136,4 @@ export function TestimonialsSection() {
     </section>
   )
 }
+

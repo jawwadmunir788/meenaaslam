@@ -26,7 +26,7 @@ const values = [
 
 export default function AboutUsPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white dark:bg-slate-900">
       <Header />
       <PageHero
         title="About Us"
@@ -35,42 +35,43 @@ export default function AboutUsPage() {
       />
 
       {/* Main Content */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-900">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
                 From Factory Floors to <span className="gradient-text">Your Doorstep</span>
               </h2>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                 From factory floors in China to doorsteps worldwide, Meena Aslam makes shipping effortless. We don't
                 just move packages—we create connections, enabling businesses to grow and individuals to access what
                 they need.
               </p>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Our streamlined logistics, deep market expertise and commitment to secure and timely deliveries make us
                 the go-to cargo partner for hassle-free global trade.
               </p>
 
               <div className="grid grid-cols-3 gap-6 mt-8">
-                <div className="text-center p-4 bg-orange-50 rounded-xl">
-                  <div className="text-2xl font-bold text-orange-500">Fast</div>
-                  <div className="text-sm text-gray-600">Shipping</div>
+                <div className="text-center p-4 bg-orange-50 dark:bg-orange-500/10 rounded-xl border border-transparent dark:border-orange-500/20">
+                  <div className="text-2xl font-bold text-orange-500 dark:text-orange-400">Fast</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Shipping</div>
                 </div>
-                <div className="text-center p-4 bg-orange-50 rounded-xl">
-                  <div className="text-2xl font-bold text-orange-500">Secure</div>
-                  <div className="text-sm text-gray-600">Handling</div>
+                <div className="text-center p-4 bg-orange-50 dark:bg-orange-500/10 rounded-xl border border-transparent dark:border-orange-500/20">
+                  <div className="text-2xl font-bold text-orange-500 dark:text-orange-400">Secure</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Handling</div>
                 </div>
-                <div className="text-center p-4 bg-orange-50 rounded-xl">
-                  <div className="text-2xl font-bold text-orange-500">Hassle</div>
-                  <div className="text-sm text-gray-600">Free</div>
+                <div className="text-center p-4 bg-orange-50 dark:bg-orange-500/10 rounded-xl border border-transparent dark:border-orange-500/20">
+                  <div className="text-2xl font-bold text-orange-500 dark:text-orange-400">Hassle</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Free</div>
                 </div>
               </div>
             </div>
 
-            <div className="relative">
-              <img src="/cargo-shipping-logistics-warehouse-professional-te.jpg" alt="About Meena Aslam" className="rounded-3xl shadow-2xl" />
-              <div className="absolute -bottom-6 -left-6 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-2xl p-6 shadow-xl">
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+              <img src="/cargo-shipping-logistics-warehouse-professional-te.jpg" alt="About Meena Aslam" className="relative rounded-3xl shadow-2xl w-full" />
+              <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-2xl p-6 shadow-xl">
                 <div className="text-3xl font-bold">Since 2020</div>
                 <div className="text-sm opacity-90">Trusted Partner</div>
               </div>
@@ -79,10 +80,10 @@ export default function AboutUsPage() {
 
           {/* Values */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Our <span className="gradient-text">Values</span>, Your Trust
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Guided by integrity, efficiency and customer commitment, we ensure seamless cargo solutions with security,
               transparency & unwavering excellence.
             </p>
@@ -90,12 +91,12 @@ export default function AboutUsPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {values.map((value) => (
-              <div key={value.title} className="p-6 bg-gray-50 rounded-2xl hover:bg-orange-50 transition-colors group">
-                <div className="p-3 bg-orange-100 rounded-xl w-fit mb-4 group-hover:bg-orange-500 transition-colors">
-                  <value.icon className="h-6 w-6 text-orange-500 group-hover:text-white transition-colors" />
+              <div key={value.title} className="p-6 bg-gray-50 dark:bg-slate-800 rounded-2xl hover:bg-orange-50 dark:hover:bg-orange-950/20 transition-all group border border-transparent dark:border-slate-700">
+                <div className="p-3 bg-orange-100 dark:bg-orange-600/40 rounded-xl w-fit mb-4 group-hover:bg-orange-500 transition-colors border border-orange-200/50 dark:border-orange-500/40">
+                  <value.icon className="h-6 w-6 text-orange-600 dark:text-orange-200 group-hover:text-white transition-colors" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{value.title}</h3>
-                <p className="text-gray-600 text-sm">{value.description}</p>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{value.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">{value.description}</p>
               </div>
             ))}
           </div>

@@ -45,7 +45,7 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
   }, [value, hasAnimated])
 
   return (
-    <div ref={ref} className="text-3xl md:text-4xl font-bold text-orange-500">
+    <div ref={ref} className="text-3xl md:text-4xl font-bold text-orange-500 dark:text-orange-400">
       {count}
       {suffix}
     </div>
@@ -54,13 +54,13 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
 
 export function StatsSection() {
   return (
-    <section className="py-16 bg-gradient-to-br from-orange-50 to-white">
+    <section className="py-16 bg-gradient-to-br from-orange-50 to-white dark:from-slate-900 dark:to-slate-800">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Numbers That <span className="gradient-text">Speak Trust</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Our track record reflects our commitment to excellence in cargo shipping and import services.
           </p>
         </div>
@@ -69,13 +69,13 @@ export function StatsSection() {
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="bg-white rounded-2xl p-6 shadow-lg text-center hover:shadow-xl transition-shadow"
+              className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg dark:shadow-slate-900/50 text-center hover:shadow-xl transition-shadow border border-transparent dark:border-slate-700"
             >
-              <div className="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <stat.icon className="h-7 w-7 text-orange-500" />
+              <div className="w-14 h-14 bg-orange-100 dark:bg-orange-600/40 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-orange-200/50 dark:border-orange-500/40">
+                <stat.icon className="h-7 w-7 text-orange-600 dark:text-orange-200" />
               </div>
               <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-              <p className="text-sm text-gray-600 mt-2">{stat.label}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -83,3 +83,4 @@ export function StatsSection() {
     </section>
   )
 }
+

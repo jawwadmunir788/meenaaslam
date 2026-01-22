@@ -49,7 +49,7 @@
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
+  --card: oklch(0.18 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.145 0 0);
   --popover-foreground: oklch(0.985 0 0);
@@ -79,6 +79,13 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+
+  /* Enhanced dark mode brand colors */
+  --brand-orange: #fb923c;
+  --brand-orange-dark: #f97316;
+  --brand-yellow: #fcd34d;
+  --brand-gradient: linear-gradient(135deg, #fcd34d 0%, #fb923c 50%, #f97316 100%);
+  --hero-sky: linear-gradient(180deg, #1e3a5f 0%, #2d4a6f 50%, #1a2332 100%);
 }
 
 @theme inline {
@@ -126,6 +133,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -136,49 +144,59 @@
   0% {
     transform: translateX(-100%) translateY(20px);
   }
+
   50% {
     transform: translateX(50vw) translateY(-10px);
   }
+
   100% {
     transform: translateX(100vw) translateY(5px);
   }
 }
 
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-15px);
   }
 }
 
 @keyframes sway {
+
   0%,
   100% {
     transform: rotate(-2deg);
   }
+
   50% {
     transform: rotate(2deg);
   }
 }
 
 @keyframes wave {
+
   0%,
   100% {
     transform: translateX(0);
   }
+
   50% {
     transform: translateX(10px);
   }
 }
 
 @keyframes pulse-glow {
+
   0%,
   100% {
     box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
   }
+
   50% {
     box-shadow: 0 0 40px rgba(249, 115, 22, 0.6);
   }
@@ -209,6 +227,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -224,4 +243,531 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* ============================================
+   DARK MODE - COMPREHENSIVE FIX
+   Premium, modern, WCAG-compliant dark theme
+   ============================================ */
+
+/* PERFORMANCE OPTIMIZED TRANSITIONS */
+/* Only apply transitions to elements that actually need them */
+html {
+  color-scheme: light dark;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+/* Optimize transitions - only for specific elements, not universal */
+body,
+section,
+div[class*="bg-"],
+button,
+a,
+input,
+textarea,
+select {
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out, border-color 150ms ease-in-out;
+  will-change: auto;
+}
+
+/* ========== SMOOTH ANIMATIONS ========== */
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide Up Animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide In From Left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide In From Right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale Up Animation */
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Shimmer Animation for loading states */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ========== APPLY ANIMATIONS ========== */
+
+/* Main sections fade in */
+main>section {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Cards slide up with stagger effect */
+[class*="grid"]>div,
+[class*="grid"]>a {
+  animation: slideUp 0.5s ease-out backwards;
+}
+
+/* Staggered delays for grid items */
+[class*="grid"]>*:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+[class*="grid"]>*:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+[class*="grid"]>*:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+[class*="grid"]>*:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+[class*="grid"]>*:nth-child(5) {
+  animation-delay: 0.25s;
+}
+
+[class*="grid"]>*:nth-child(6) {
+  animation-delay: 0.3s;
+}
+
+/* Hero content animation */
+.hero-section h1 {
+  animation: slideUp 0.6s ease-out 0.1s backwards;
+}
+
+.hero-section p {
+  animation: slideUp 0.6s ease-out 0.2s backwards;
+}
+
+.hero-section .flex {
+  animation: slideUp 0.6s ease-out 0.3s backwards;
+}
+
+/* Buttons hover animation */
+button,
+a[class*="Button"],
+[class*="btn"] {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+button:hover,
+a[class*="Button"]:hover,
+[class*="btn"]:hover {
+  transform: translateY(-2px);
+}
+
+button:active,
+a[class*="Button"]:active,
+[class*="btn"]:active {
+  transform: translateY(0);
+}
+
+/* Card hover animations */
+[class*="rounded"][class*="shadow"]:hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Icon container animations */
+[class*="bg-orange"][class*="rounded"] {
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+[class*="bg-orange"][class*="rounded"]:hover {
+  transform: scale(1.05);
+}
+
+/* Link hover animations */
+a {
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* Image hover effects */
+img {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+[class*="hover"]:hover img {
+  transform: scale(1.02);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Animate navigation items */
+nav a,
+header a {
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+nav a:hover,
+header a:hover {
+  transform: translateY(-1px);
+}
+
+/* Stats counter animation */
+[class*="stats"] [class*="font-bold"] {
+  animation: scaleUp 0.5s ease-out backwards;
+}
+
+/* Footer slide up */
+footer {
+  animation: slideUp 0.4s ease-out;
+}
+
+/* Lottie animation container */
+[class*="Lottie"],
+.lottie-container {
+  animation: fadeIn 0.8s ease-out 0.3s backwards;
+}
+
+/* ========== TEXT HIERARCHY FIXES ========== */
+/* These are the CRITICAL fixes - dark gray text must become light in dark mode */
+
+.dark .text-gray-900 {
+  color: #f8fafc !important;
+  /* slate-50 - Primary text */
+}
+
+.dark .text-gray-800 {
+  color: #f1f5f9 !important;
+  /* slate-100 - Strong text */
+}
+
+.dark .text-gray-700 {
+  color: #e2e8f0 !important;
+  /* slate-200 - Body text */
+}
+
+.dark .text-gray-600 {
+  color: #cbd5e1 !important;
+  /* slate-300 - Secondary text */
+}
+
+.dark .text-gray-500 {
+  color: #94a3b8 !important;
+  /* slate-400 - Muted text */
+}
+
+.dark .text-gray-400 {
+  color: #64748b !important;
+  /* slate-500 - Subtle text */
+}
+
+/* Black text override */
+.dark .text-black {
+  color: #f8fafc !important;
+}
+
+/* ========== BACKGROUND FIXES ========== */
+/* Section backgrounds that need dark variants */
+
+.dark .bg-white {
+  background-color: #0f172a !important;
+  /* slate-900 */
+  color: #f1f5f9 !important;
+}
+
+.dark .bg-gray-50 {
+  background-color: #0f172a !important;
+  /* slate-900 */
+}
+
+.dark .bg-gray-100 {
+  background-color: #1e293b !important;
+  /* slate-800 */
+}
+
+.dark .bg-gray-200 {
+  background-color: #334155 !important;
+  /* slate-700 */
+}
+
+/* Custom section backgrounds */
+.dark .bg-\[#f8fafc\] {
+  background-color: #0f172a !important;
+}
+
+.dark .bg-\[#fef3c7\] {
+  background-color: #1e293b !important;
+}
+
+.dark .bg-\[#fff7ed\] {
+  background-color: #1e293b !important;
+}
+
+.dark .bg-\[#fffbeb\] {
+  background-color: #1e293b !important;
+}
+
+/* Hero section specific - uses gradient variable */
+.dark section[class*="hero"],
+.dark .hero-section,
+.dark [class*="bg-gradient-to-b"][class*="from-sky"] {
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #0f172a 100%) !important;
+}
+
+/* ========== CARD FIXES ========== */
+/* Cards need elevated dark backgrounds with subtle borders */
+
+.dark .bg-white.rounded,
+.dark .bg-white.rounded-lg,
+.dark .bg-white.rounded-xl,
+.dark .bg-white.rounded-2xl,
+.dark .bg-white.rounded-3xl,
+.dark [class*="bg-white"][class*="shadow"] {
+  background-color: #1e293b !important;
+  /* slate-800 - elevated surface */
+  border-color: #334155 !important;
+  /* slate-700 */
+  color: #f1f5f9 !important;
+}
+
+/* Card shadows for depth */
+.dark .shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(51, 65, 85, 0.3) !important;
+}
+
+.dark .shadow,
+.dark .shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -1px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(51, 65, 85, 0.2) !important;
+}
+
+.dark .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.7), 0 4px 6px -2px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(51, 65, 85, 0.2) !important;
+}
+
+.dark .shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.8), 0 10px 10px -5px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(51, 65, 85, 0.2) !important;
+}
+
+/* ========== BORDER FIXES ========== */
+
+.dark .border-gray-100 {
+  border-color: #334155 !important;
+  /* slate-700 */
+}
+
+.dark .border-gray-200 {
+  border-color: #334155 !important;
+}
+
+.dark .border-gray-300 {
+  border-color: #475569 !important;
+  /* slate-600 */
+}
+
+.dark .border-orange-100 {
+  border-color: #7c2d12 !important;
+  /* orange-900 */
+}
+
+.dark .border-orange-200 {
+  border-color: #9a3412 !important;
+  /* orange-800 */
+}
+
+/* ========== FORM INPUTS ========== */
+
+.dark input[type="text"],
+.dark input[type="email"],
+.dark input[type="tel"],
+.dark input[type="number"],
+.dark input[type="password"],
+.dark textarea,
+.dark select {
+  background-color: #1e293b !important;
+  border-color: #475569 !important;
+  color: #f1f5f9 !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  background-color: #0f172a !important;
+  border-color: #fb923c !important;
+  box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.2) !important;
+}
+
+/* ========== BUTTON FIXES ========== */
+
+.dark .bg-orange-50,
+.dark .bg-orange-100 {
+  background-color: rgba(251, 146, 60, 0.15) !important;
+}
+
+.dark .hover\:bg-orange-50:hover {
+  background-color: rgba(251, 146, 60, 0.2) !important;
+}
+
+/* ========== LINK FIXES ========== */
+
+.dark a:not([class]) {
+  color: #fb923c !important;
+}
+
+.dark a:not([class]):hover {
+  color: #fdba74 !important;
+}
+
+/* ========== GRADIENT TEXT IN DARK MODE ========== */
+
+.dark .gradient-text {
+  background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========== ICON CONTAINERS ========== */
+
+.dark .bg-orange-100 {
+  background-color: rgba(251, 146, 60, 0.2) !important;
+}
+
+.dark .bg-green-100 {
+  background-color: rgba(34, 197, 94, 0.2) !important;
+}
+
+.dark .bg-blue-100 {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+/* ========== SPECIAL SECTIONS ========== */
+
+/* Interactive services section */
+.dark .interactive-services-section {
+  background-color: #0f172a !important;
+}
+
+/* Countries/Markets section tabs */
+.dark [class*="bg-orange-500"] {
+  background-color: #ea580c !important;
+}
+
+/* Testimonial cards */
+.dark .testimonial-card,
+.dark [class*="testimonial"] {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+/* ========== IMAGES ========== */
+
+.dark img:not([src*="logo"]):not([src*=".svg"]) {
+  filter: brightness(0.9) contrast(1.05);
+}
+
+.dark img[src*="logo"],
+.dark img[alt*="logo" i] {
+  filter: brightness(1.1);
+}
+
+/* ========== ACCESSIBILITY ========== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========== FOCUS STATES ========== */
+
+.dark *:focus-visible {
+  outline-color: #fb923c !important;
+  outline-offset: 2px;
 }

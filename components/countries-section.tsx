@@ -125,14 +125,14 @@ export function CountriesSection() {
   const [activeCountry, setActiveCountry] = useState(countries[0])
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white dark:bg-slate-900">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Serving Key <span className="gradient-text">Global Markets</span>
           </h2>
-          <p className="text-gray-600 max-w-3xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             We specialize in cargo services for clients in Pakistan, the UAE, the USA and Europe. Our reliable logistics
             solutions ensure safe and timely deliveries, making us a trusted partner for businesses & individuals across
             these key regions.
@@ -149,7 +149,7 @@ export function CountriesSection() {
                 "flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all min-w-[140px] justify-center",
                 activeCountry.id === country.id
                   ? "bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg scale-105"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200",
+                  : "bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-700",
               )}
             >
               <div className="flex items-center gap-2">
@@ -167,7 +167,7 @@ export function CountriesSection() {
         {/* Country Content */}
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Description */}
-          <div className="bg-gradient-to-br from-orange-50 to-white rounded-3xl p-8 shadow-lg">
+          <div className="bg-gradient-to-br from-orange-50 to-white dark:from-slate-800 dark:to-slate-900 rounded-3xl p-8 shadow-lg dark:shadow-slate-800/50 border border-transparent dark:border-slate-700">
             <div className="flex items-center gap-4 mb-6">
               {activeCountry.isImage ? (
                 <img src={activeCountry.flag} alt={activeCountry.name} className="w-16 h-16 rounded-full object-cover shadow-md" />
@@ -175,11 +175,11 @@ export function CountriesSection() {
                 <span className="text-6xl">{activeCountry.flag}</span>
               )}
               <div>
-                <h3 className="text-2xl font-bold text-gray-900">{activeCountry.name}</h3>
-                <p className="text-orange-500 font-medium">Premium Shipping Destination</p>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{activeCountry.name}</h3>
+                <p className="text-orange-500 dark:text-orange-400 font-medium">Premium Shipping Destination</p>
               </div>
             </div>
-            <p className="text-gray-600 leading-relaxed mb-8">{activeCountry.description}</p>
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-8">{activeCountry.description}</p>
             <Link href="/request-a-quote">
               <Button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700">
                 Get A Quote
@@ -189,15 +189,15 @@ export function CountriesSection() {
           </div>
 
           {/* Features */}
-          <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
-            <h4 className="text-xl font-bold text-gray-900 mb-6">Why Ship to {activeCountry.name}?</h4>
+          <div className="bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-lg dark:shadow-slate-800/50 border border-gray-100 dark:border-slate-700">
+            <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Why Ship to {activeCountry.name}?</h4>
             <ul className="space-y-4">
               {activeCountry.features.map((feature, index) => (
                 <li key={index} className="flex items-start gap-3">
-                  <div className="p-1 bg-orange-100 rounded-full mt-0.5">
-                    <Check className="h-4 w-4 text-orange-500" />
+                  <div className="p-1 bg-orange-100 dark:bg-orange-600/50 rounded-full mt-0.5 border border-orange-200 dark:border-orange-500/60">
+                    <Check className="h-4 w-4 text-orange-600 dark:text-orange-200" />
                   </div>
-                  <span className="text-gray-700">{feature}</span>
+                  <span className="text-gray-700 dark:text-gray-300">{feature}</span>
                 </li>
               ))}
             </ul>

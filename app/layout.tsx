@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Poppins } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
 const poppins = Poppins({
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
   icons: {
     icon: "/images/logo.png",
   },
-    generator: 'v0.app'
+  generator: 'v0.app'
 }
 
 export default function RootLayout({
@@ -25,9 +26,18 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${poppins.className} antialiased`}>
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          enableColorScheme
+          disableTransitionOnChange={false}
+          storageKey="meena-aslam-theme"
+        >
+          {children}
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

@@ -64,7 +64,7 @@ const services = [
 
 export default function OurServicesPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white dark:bg-slate-900">
       <Header />
       <PageHero
         title="Our Services"
@@ -72,33 +72,33 @@ export default function OurServicesPage() {
         breadcrumb="Our Services"
       />
 
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-900">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service) => (
               <Card
                 key={service.title}
-                className="group hover:shadow-xl transition-all duration-300 border-none bg-white shadow-lg hover:-translate-y-1"
+                className="group hover:shadow-xl transition-all duration-300 border-none bg-white dark:bg-slate-800 shadow-lg dark:shadow-slate-900/50 hover:-translate-y-1"
               >
                 <CardContent className="p-8">
-                  <div className="p-4 bg-gradient-to-br from-orange-100 to-orange-50 rounded-2xl w-fit mb-6 group-hover:from-orange-500 group-hover:to-orange-600 transition-all duration-300">
-                    <service.icon className="h-10 w-10 text-orange-500 group-hover:text-white transition-colors" />
+                  <div className="p-4 bg-gradient-to-br from-orange-100 to-orange-50 dark:from-slate-700 dark:to-slate-800 rounded-2xl w-fit mb-6 group-hover:from-orange-500 group-hover:to-orange-600 transition-all duration-300 border border-transparent dark:border-slate-700">
+                    <service.icon className="h-10 w-10 text-orange-500 dark:text-orange-400 group-hover:text-white transition-colors" />
                   </div>
 
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
-                  <p className="text-gray-600 text-sm mb-6">{service.description}</p>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{service.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mb-6">{service.description}</p>
 
                   <ul className="space-y-2 mb-6">
                     {service.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-2 text-sm text-gray-600">
-                        <div className="w-1.5 h-1.5 bg-orange-500 rounded-full" />
+                      <li key={feature} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                        <div className="w-1.5 h-1.5 bg-orange-500 dark:bg-orange-400 rounded-full" />
                         {feature}
                       </li>
                     ))}
                   </ul>
 
                   <Link href={service.href}>
-                    <Button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700">
+                    <Button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 shadow-lg shadow-orange-500/20">
                       Learn More
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>

@@ -5,6 +5,7 @@ import Image from "next/image"
 import { useState } from "react"
 import { Menu, X, ChevronDown, Phone, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { DarkModeToggle } from "@/components/dark-mode-toggle"
 
 const services = [
   { name: "Import Service", href: "/our-services/import-service" },
@@ -20,7 +21,7 @@ export function Header() {
   const [servicesOpen, setServicesOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-sm dark:shadow-gray-800/50 transition-colors duration-300">
       {/* Top Bar */}
       <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 px-4">
         <div className="container mx-auto flex items-center justify-between text-sm">
@@ -44,44 +45,55 @@ export function Header() {
 
       {/* Main Navigation */}
       <nav className="container mx-auto px-4 py-3">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
+        <div className="flex items-center justify-between relative">
+          {/* Mobile Menu Button - Left on mobile */}
+          <button
+            className="lg:hidden p-2 text-gray-700 dark:text-gray-300 z-10"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+
+          {/* Logo - Center on mobile, Left on desktop */}
+          <Link
+            href="/"
+            className="flex items-center lg:static absolute left-1/2 -translate-x-1/2 lg:left-0 lg:translate-x-0 transition-all duration-300"
+          >
             <Image
               src="/images/logo.png"
               alt="Meena Aslam Logo"
               width={180}
               height={50}
-              className="h-12 w-auto"
+              className="h-10 sm:h-12 w-auto dark:brightness-110"
               priority
             />
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
-            <Link href="/" className="text-gray-700 hover:text-orange-500 font-medium transition-colors">
+            <Link href="/" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 font-medium transition-colors">
               Home
             </Link>
-            <Link href="/about-us" className="text-gray-700 hover:text-orange-500 font-medium transition-colors">
+            <Link href="/about-us" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 font-medium transition-colors">
               About Us
             </Link>
 
             {/* Services Dropdown */}
             <div className="relative group">
               <button
-                className="flex items-center gap-1 text-gray-700 hover:text-orange-500 font-medium transition-colors"
+                className="flex items-center gap-1 text-gray-700 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 font-medium transition-colors"
                 onClick={() => setServicesOpen(!servicesOpen)}
               >
                 Our Services
                 <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
               </button>
               <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <div className="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[220px]">
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl dark:shadow-gray-900/50 border border-gray-100 dark:border-gray-700 py-2 min-w-[220px]">
                   {services.map((service) => (
                     <Link
                       key={service.name}
                       href={service.href}
-                      className="block px-4 py-2 text-gray-700 hover:bg-orange-50 hover:text-orange-500 transition-colors"
+                      className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-orange-950/30 hover:text-orange-500 dark:hover:text-orange-400 transition-colors"
                     >
                       {service.name}
                     </Link>
@@ -90,54 +102,55 @@ export function Header() {
               </div>
             </div>
 
-            <Link href="/how-we-work" className="text-gray-700 hover:text-orange-500 font-medium transition-colors">
+            <Link href="/how-we-work" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 font-medium transition-colors">
               How We Work
             </Link>
-            <Link href="/why-choose-us" className="text-gray-700 hover:text-orange-500 font-medium transition-colors">
+            <Link href="/why-choose-us" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 font-medium transition-colors">
               Why Choose Us
             </Link>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="hidden lg:flex items-center gap-3">
-            <Link href="/request-a-quote">
-              <Button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-lg">
-                Get A Quote
-              </Button>
-            </Link>
-            <Link href="/contact-us">
-              <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50 bg-transparent">
-                Contact Us
-              </Button>
-            </Link>
-          </div>
+          {/* Right Side - Dark Mode + CTAs */}
+          <div className="flex items-center gap-3 z-10">
+            {/* Dark Mode Toggle - Visible on mobile and desktop */}
+            <DarkModeToggle />
 
-          {/* Mobile Menu Button */}
-          <button className="lg:hidden p-2 text-gray-700" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+            {/* Desktop CTA Buttons */}
+            <div className="hidden lg:flex items-center gap-3">
+              <Link href="/request-a-quote">
+                <Button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-lg">
+                  Get A Quote
+                </Button>
+              </Link>
+              <Link href="/contact-us">
+                <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50 bg-transparent dark:text-orange-400 dark:border-orange-400 dark:hover:bg-orange-950/30">
+                  Contact Us
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t border-gray-100 pt-4">
+          <div className="lg:hidden mt-4 pb-4 border-t border-gray-100 dark:border-gray-700 pt-4">
             <div className="flex flex-col gap-3">
-              <Link href="/" className="text-gray-700 hover:text-orange-500 font-medium py-2">
+              <Link href="/" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 font-medium py-2">
                 Home
               </Link>
-              <Link href="/about-us" className="text-gray-700 hover:text-orange-500 font-medium py-2">
+              <Link href="/about-us" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 font-medium py-2">
                 About Us
               </Link>
-              <Link href="/our-services" className="text-gray-700 hover:text-orange-500 font-medium py-2">
+              <Link href="/our-services" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 font-medium py-2">
                 Our Services
               </Link>
-              <Link href="/how-we-work" className="text-gray-700 hover:text-orange-500 font-medium py-2">
+              <Link href="/how-we-work" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 font-medium py-2">
                 How We Work
               </Link>
-              <Link href="/why-choose-us" className="text-gray-700 hover:text-orange-500 font-medium py-2">
+              <Link href="/why-choose-us" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 font-medium py-2">
                 Why Choose Us
               </Link>
-              <Link href="/contact-us" className="text-gray-700 hover:text-orange-500 font-medium py-2">
+              <Link href="/contact-us" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 font-medium py-2">
                 Contact Us
               </Link>
               <div className="flex flex-col gap-2 mt-2">
